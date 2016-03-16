@@ -34,14 +34,12 @@ public class USS_Application extends JFrame {
 	private JTextField textFieldUserName;
 	private JPasswordField passwordField;
 	
-	private static int state;
-	
-	public static enum ApplicationState{LoginStateStart,LoginStateAuthorized,LoginStateDisposed};
-	/*static*/ ApplicationState LoginWindowState;
+	//private static int state;
+	//public static enum ApplicationState{LoginStateStart,LoginStateAuthorized,LoginStateDisposed};
+	///*static*/ ApplicationState LoginWindowState;
 		
-	
-	MainMenu frameMainMenu = new MainMenu();/* Used later*/
-	
+	MainMenu frameMainMenu = new MainMenu();/* Used later (composition)*/
+	Storekeeper currentstorekeeper = new Storekeeper();/* Used for checking storekeeper info. (composition)*/
 
 	/**
 	 * Launch the application.
@@ -49,8 +47,7 @@ public class USS_Application extends JFrame {
 	public static void main(String[] args) {
 		
 		//LoginWindowState = ApplicationState.LoginStateStart;
-		//LoginWindowState = ApplicationState.LoginStateAuthorized;
-			
+		//LoginWindowState = ApplicationState.LoginStateAuthorized;		
 		//USS_Application frameLogin = new USS_Application();
 			
 		EventQueue.invokeLater(new Runnable() {
@@ -61,10 +58,7 @@ public class USS_Application extends JFrame {
 					USS_Application frameLogin = new USS_Application();
 					frameLogin.setTitle("Univeristy Souvenir Store");
 					frameLogin.setVisible(true);
-								
-					//frameLogin.setVisible(false);
-					
-														
+																					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -78,10 +72,8 @@ public class USS_Application extends JFrame {
 	 */
 	public USS_Application() {
 		
-		setResizable(false);	
-		
-		LoginScreen();		
-				
+		setResizable(false);			
+		LoginScreen();					
 	}
 	
 	public static void MainMenuScreen(){	
@@ -96,11 +88,6 @@ public class USS_Application extends JFrame {
 				
 	}
 	
-	public static void DisposeLoginScreen(){
-		
-		//frameLogin.dispose();
-	}
-	
 	public static void UnauthorizedAlertScreen(){
 	
 		try {
@@ -108,9 +95,10 @@ public class USS_Application extends JFrame {
 			frameAlert.setTitle("Login check");
 			frameAlert.setVisible(true);
 		} catch (Exception logine) {
+			
 			logine.printStackTrace();
 		}
-}
+	}
 		
 	public  void LoginScreen() {
 		
@@ -130,8 +118,7 @@ public class USS_Application extends JFrame {
 		contentPanel.add(passwordField);
 		
 		JButton btnOK = new JButton("OK");
-		
-		
+				
 		
 		btnOK.setBounds(143, 196, 89, 23);
 		contentPanel.add(btnOK);
@@ -167,10 +154,9 @@ public class USS_Application extends JFrame {
 					
 					try{
 						
-						if(checkUserInfo(textUserName,textPassword))
+						if(currentstorekeeper.checkUserInfo(textUserName,textPassword))
 						{				
-							/* Open Dialog Box if Username and Password is correct.*/
-							
+							/* Open Dialog Box if Username and Password is correct.*/							
 							try {
 								//MainMenu frameHome = new MainMenu();
 								frameMainMenu.setTitle("MainMenu Screen : " + "Logged in as "+ textUserName);
@@ -214,7 +200,7 @@ public class USS_Application extends JFrame {
 								
 				try{
 				
-					if(checkUserInfo(textUserName,textPassword))
+					if(currentstorekeeper.checkUserInfo(textUserName,textPassword))
 					{				
 						/* Open Dialog Box if Username and Password is correct.*/
 						
@@ -228,8 +214,7 @@ public class USS_Application extends JFrame {
 						} catch (Exception homee) {
 							homee.printStackTrace();
 						}
-												
-						
+																	
 					}
 					else{
 						
@@ -256,71 +241,18 @@ public class USS_Application extends JFrame {
 	}
 	
 	/* Inner class */
-	class MyKeyListener extends KeyAdapter {
+	//class MyKeyListener extends KeyAdapter {		
+	//	  public void keyPressed(KeyEvent evt) {
+	//	    /*if (evt.getKeyChar() == 'a') {
+	//	      System.out.println("Check for key characters: " + evt.getKeyChar());
+	//	    }*/
+	//	    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+	//	      //System.out.println("Check for key codes: " + evt.getKeyCode());/* For debugging */
+	//	    }
+	//	  }
+	//}
 		
-		  public void keyPressed(KeyEvent evt) {
-		    /*if (evt.getKeyChar() == 'a') {
-		      System.out.println("Check for key characters: " + evt.getKeyChar());
-		    }*/
-		    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-		      System.out.println("Check for key codes: " + evt.getKeyCode());
-		    }
-		  }
-	}
-	
-	/* Read Storekeepers.dat file and return the result. */
-	public ArrayList<String> readStorekeepersFile() throws IOException
-	{	
-		String line = new String();
-		ArrayList<String>list =new ArrayList<String> ();
-			
-		try {
-			
-	      BufferedReader in = new BufferedReader(new FileReader("C:/Users/NayLA/java_workspace/UniversitySouvenirStore/data/Storekeepers.dat"));
-	      //BufferedReader in = new BufferedReader(new FileReader("./../data/Storekeepers.dat"));	
-	      
-	      /***********************************************/
-	      while((line = in.readLine()) != null) {
-	    	  	    	  
-	    	  list.add(line);/* Add the line (which was read) into the list.*/	              	    
-	      }
-	      
-	      //System.out.println (list);//Debug	      
-	      /***********************************************/      
-	      in.close();
-	        
-	    } catch (IOException e) {
-	    	
-	        System.out.println("File Read Error");
-	    }
-		
-		return list;
-	}
-
-	public Boolean checkUserInfo(String usrname,String pw) throws IOException
-	{		
-		String userInfo = usrname + "," + pw;/* Combine both textFields and add "," in between.*/
-		
-		ArrayList<String> listRead = readStorekeepersFile();
-				
-		//list.size();
-	    //list.contains(userInfo);
-		/* Check whether userInfo is in the list. */
-		if(listRead.contains(userInfo))
-		{
-			System.out.println("Correct user!");
-			return true;
-		}
-		else{
-						
-			System.out.println("Wrong user!");
-			return false;
-		}
-			
-	}
-	
 }
-
 
 /* Outer class */
 

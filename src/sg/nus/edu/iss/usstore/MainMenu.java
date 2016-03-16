@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import java.awt.Font;
 
 public class MainMenu extends JFrame {
 
@@ -40,27 +41,32 @@ public class MainMenu extends JFrame {
 	public MainMenu() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 461, 365);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(204, 102, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnRegistration = new JButton("Add new member");
+		JButton btnRegistration = new JButton("Add new storekeeper");
 		btnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				Storekeeper stkp = new Storekeeper();/* Added */
-				
-				stkp.updateStoreKeeperInfo();/* Added */
+							
+				try {
+					StoreKeeperInfoUpdate frame = new StoreKeeperInfoUpdate();
+					frame.setVisible(true);
+				} catch (Exception rege) {
+					rege.printStackTrace();
+				}
 			}
 		});
-		btnRegistration.setBounds(265, 30, 145, 23);
+		btnRegistration.setBounds(265, 256, 156, 23);
 		contentPane.add(btnRegistration);
 		
-		JLabel lblRegistration = new JLabel("       Member registration");
-		lblRegistration.setBounds(265, 5, 145, 14);
+		JLabel lblRegistration = new JLabel("  Member registration");
+		lblRegistration.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblRegistration.setForeground(Color.CYAN);
+		lblRegistration.setBounds(265, 11, 174, 23);
 		contentPane.add(lblRegistration);
 		
 		JButton btnLogout = new JButton("Logout");
@@ -82,31 +88,47 @@ public class MainMenu extends JFrame {
 			}
 		});
 		btnLogout.setToolTipText("Press here to log out!");
-		btnLogout.setBounds(265, 206, 145, 45);
+		btnLogout.setBounds(25, 256, 156, 51);
 		contentPane.add(btnLogout);
 		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(25, 206, 156, 45);
-		contentPane.add(btnCancel);
-		
 		JButton btnAddProduct = new JButton("Add new product");
-		btnAddProduct.setBounds(265, 88, 145, 23);
+		btnAddProduct.setBounds(265, 114, 156, 23);
 		contentPane.add(btnAddProduct);
 		
 		JButton btnAddCategory = new JButton("Add new category");
-		btnAddCategory.setBounds(265, 142, 145, 23);
+		btnAddCategory.setBounds(265, 184, 156, 23);
 		contentPane.add(btnAddCategory);
 		
-		JButton btnTransaction = new JButton("Add new transaction");
-		btnTransaction.setBounds(25, 30, 156, 23);
+		JButton btnTransaction = new JButton("New transaction");
+		btnTransaction.setBounds(25, 36, 156, 51);
 		contentPane.add(btnTransaction);
 		
 		JButton btnReport = new JButton("Generate report");
-		btnReport.setBounds(25, 142, 156, 23);
+		btnReport.setBounds(25, 179, 156, 54);
 		contentPane.add(btnReport);
 		
 		JButton btnDiscount = new JButton("Manage discounts");
-		btnDiscount.setBounds(25, 88, 156, 23);
+		btnDiscount.setBounds(25, 114, 156, 51);
 		contentPane.add(btnDiscount);
+		
+		JButton btnNewMember = new JButton("Add new member");
+		btnNewMember.setBounds(265, 36, 156, 23);
+		contentPane.add(btnNewMember);
+		
+		JButton btnRemoveMember = new JButton("Remove member");
+		btnRemoveMember.setBounds(265, 64, 156, 23);
+		contentPane.add(btnRemoveMember);
+		
+		JButton btnRemoveProduct = new JButton("Remove product");
+		btnRemoveProduct.setBounds(265, 142, 156, 23);
+		contentPane.add(btnRemoveProduct);
+		
+		JButton btnRemoveCategory = new JButton("Remove category");
+		btnRemoveCategory.setBounds(265, 210, 156, 23);
+		contentPane.add(btnRemoveCategory);
+		
+		JButton btnRemoveStorekeeper = new JButton("Remove storekeeper");
+		btnRemoveStorekeeper.setBounds(265, 283, 156, 23);
+		contentPane.add(btnRemoveStorekeeper);
 	}
 }
