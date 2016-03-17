@@ -46,7 +46,7 @@ public class Storekeeper extends Customer{
 		 
 	      try {
 	         // APPEND MODE SET HERE
-	         bw = new BufferedWriter(new FileWriter("C:/Users/NayLA/java_workspace/UniversitySouvenirStore/data/Storekeepers.dat", true));
+	         bw = new BufferedWriter(new FileWriter("C:/Users/NayLA/java_workspace/MyUniversitySouvenirStore/data/Storekeepers.dat", true));
 	         //bw.write("\r\n");
 		     bw.write(this.name +","+this.password +"\r\n");/* Replace with text entered from textField.*/
 		     //bw.newLine();
@@ -82,7 +82,7 @@ public class Storekeeper extends Customer{
 			
 		try {
 			
-	      BufferedReader in = new BufferedReader(new FileReader("C:/Users/NayLA/java_workspace/UniversitySouvenirStore/data/Storekeepers.dat"));
+	      BufferedReader in = new BufferedReader(new FileReader("C:/Users/NayLA/java_workspace/MyUniversitySouvenirStore/data/Storekeepers.dat"));
 	      //BufferedReader in = new BufferedReader(new FileReader("./../data/Storekeepers.dat"));	
 	      
 	      /***********************************************/

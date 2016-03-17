@@ -279,8 +279,8 @@ class ContentPanel extends JPanel {
 
 	  ContentPanel() {
 	    MediaTracker mt = new MediaTracker(this);
-	    bgimage = Toolkit.getDefaultToolkit().getImage("C:/Users/NayLA/java_workspace/UniversitySouvenirStore/images/StoreLogo.png");
-	    logoimage = Toolkit.getDefaultToolkit().getImage("C:/Users/NayLA/java_workspace/UniversitySouvenirStore/images/NUS_ISS.png");
+	    bgimage = Toolkit.getDefaultToolkit().getImage("C:/Users/NayLA/java_workspace/MyUniversitySouvenirStore/images/StoreLogo.png");
+	    logoimage = Toolkit.getDefaultToolkit().getImage("C:/Users/NayLA/java_workspace/MyUniversitySouvenirStore/images/NUS_ISS.png");
 	    //bgimage = Toolkit.getDefaultToolkit().getImage("./../../../../images/universitysouvenirstoreicon.png");
 	    
 	    mt.addImage(bgimage, 0);	    
