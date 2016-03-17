@@ -1,3 +1,14 @@
+/**
+ * File name : MemberInfoUpdate.java
+ * 
+ * Description : JFrame GUI class for updating member info.
+ * 
+ * @author : NayLA 
+ * 
+ * Date : 08/03/2016
+ * 
+ */
+
 package sg.nus.edu.iss.usstore;
 
 import java.awt.BorderLayout;
@@ -36,7 +47,7 @@ public class MemberInfoUpdate extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 105, 180));
+		contentPane.setBackground(new Color(244, 164, 96));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

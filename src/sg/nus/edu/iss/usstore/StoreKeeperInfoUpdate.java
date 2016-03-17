@@ -1,3 +1,14 @@
+/**
+ * File name : StoreKeeperInfoUpdate.java
+ * 
+ * Description : JFrame GUI class for handling Storekeeper information
+ * 
+ * @author : NayLA 
+ * 
+ * Date :10/03/2016
+ * 
+ */
+
 package sg.nus.edu.iss.usstore;
 
 import java.awt.BorderLayout;
@@ -37,6 +48,7 @@ public class StoreKeeperInfoUpdate extends JFrame {
 	private JPanel contentPane;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
+	private JPasswordField passwordFieldRetype;
 
 	/**
 	 * Launch the application.
@@ -61,26 +73,26 @@ public class StoreKeeperInfoUpdate extends JFrame {
 		
 		setTitle("Storekeeper Registration");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 452, 240);		
+		setBounds(100, 100, 455, 262);		
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 105, 180));
+		contentPane.setBackground(new Color(244, 164, 96));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		usernameField = new JTextField();
-		usernameField.setBounds(131, 66, 183, 20);
+		usernameField.setBounds(131, 45, 183, 20);
 		contentPane.add(usernameField);
 		usernameField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(131, 109, 183, 20);
+		passwordField.setBounds(131, 86, 183, 20);
 		contentPane.add(passwordField);
 		
 		JLabel lblRegistrationStatus = new JLabel("          Registration unsuccessful !");
 		lblRegistrationStatus.setVisible(false);
-		lblRegistrationStatus.setForeground(Color.YELLOW);
-		lblRegistrationStatus.setBounds(131, 174, 183, 14);
+		lblRegistrationStatus.setForeground(new Color(65, 105, 225));
+		lblRegistrationStatus.setBounds(131, 199, 183, 14);
 		contentPane.add(lblRegistrationStatus);
 		
 		JButton btnConfirm = new JButton("Confirm");
@@ -135,24 +147,36 @@ public class StoreKeeperInfoUpdate extends JFrame {
 		});
 		
 		
-		btnConfirm.setBounds(183, 140, 89, 23);
+		btnConfirm.setBounds(177, 165, 89, 23);
 		contentPane.add(btnConfirm);
 		
-		JLabel lblUsername = new JLabel("User name");
+		JLabel lblUsername = new JLabel("Type user name");
+		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblUsername.setForeground(Color.CYAN);
-		lblUsername.setBounds(10, 69, 111, 14);
+		lblUsername.setBounds(10, 47, 111, 14);
 		contentPane.add(lblUsername);
 		
-		JLabel lblPassword = new JLabel("Password");
+		JLabel lblPassword = new JLabel("Type password");
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPassword.setForeground(Color.CYAN);
-		lblPassword.setBounds(10, 112, 111, 14);
+		lblPassword.setBounds(10, 88, 111, 14);
 		contentPane.add(lblPassword);
 		
 		JLabel lblRegistration = new JLabel("       New user registration");
 		lblRegistration.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblRegistration.setForeground(Color.CYAN);
-		lblRegistration.setBounds(131, 32, 183, 23);
+		lblRegistration.setBounds(131, 11, 183, 23);
 		contentPane.add(lblRegistration);
+		
+		passwordFieldRetype = new JPasswordField();
+		passwordFieldRetype.setBounds(131, 123, 183, 20);
+		contentPane.add(passwordFieldRetype);
+		
+		JLabel lblRetypePassword = new JLabel("Re-type password");
+		lblRetypePassword.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblRetypePassword.setForeground(new Color(0, 255, 255));
+		lblRetypePassword.setBounds(10, 126, 123, 14);
+		contentPane.add(lblRetypePassword);
 		
 		
 	}

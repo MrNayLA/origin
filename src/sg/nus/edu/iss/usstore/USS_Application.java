@@ -1,3 +1,14 @@
+/**
+ * File name : USS_Application.java
+ * 
+ * Description : JFrame GUI class for Login
+ * 
+ * @author : NayLA 
+ * 
+ * Date : 08/03/2016
+ * 
+ */
+
 package sg.nus.edu.iss.usstore;
 
 import java.awt.BorderLayout;
@@ -26,6 +37,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Font;
 
 
 public class USS_Application extends JFrame {
@@ -103,38 +115,42 @@ public class USS_Application extends JFrame {
 	public  void LoginScreen() {
 		
 		ContentPanel contentPanel = new ContentPanel();
-		contentPanel.setBackground(new Color(219, 112, 147));
+		contentPanel.setBackground(new Color(244, 164, 96));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 				
 		
 		textFieldUserName = new JTextField();
-		textFieldUserName.setBounds(93, 119, 191, 20);
+		textFieldUserName.setBounds(83, 208, 179, 23);
 		contentPanel.add(textFieldUserName);
 		textFieldUserName.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(93, 150, 191, 20);
+		passwordField.setBounds(83, 254, 179, 23);
 		contentPanel.add(passwordField);
 		
 		JButton btnOK = new JButton("OK");
 				
 		
-		btnOK.setBounds(143, 196, 89, 23);
+		btnOK.setBounds(124, 288, 89, 23);
 		contentPanel.add(btnOK);
 		
 		JLabel lblUserName = new JLabel("User name");
-		lblUserName.setBounds(10, 122, 75, 14);
+		lblUserName.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblUserName.setForeground(new Color(0, 0, 139));
+		lblUserName.setBounds(10, 211, 69, 14);
 		contentPanel.add(lblUserName);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(10, 153, 75, 14);
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPassword.setForeground(new Color(0, 0, 128));
+		lblPassword.setBounds(10, 257, 69, 14);
 		contentPanel.add(lblPassword);
-	    setSize(388, 295);
+	    setSize(380, 324);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 388, 300);
+		setBounds(100, 120, 340, 360);
 		//contentPane = new JPanel();
 		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(contentPane);
@@ -258,12 +274,18 @@ public class USS_Application extends JFrame {
 
 class ContentPanel extends JPanel {
 	  Image bgimage = null;
+	  
+	  Image logoimage = null;
 
 	  ContentPanel() {
 	    MediaTracker mt = new MediaTracker(this);
-	    bgimage = Toolkit.getDefaultToolkit().getImage("C:/Users/NayLA/java_workspace/UniversitySouvenirStore/images/universitysouvenirstoreicon.png");
+	    bgimage = Toolkit.getDefaultToolkit().getImage("C:/Users/NayLA/java_workspace/UniversitySouvenirStore/images/StoreLogo.png");
+	    logoimage = Toolkit.getDefaultToolkit().getImage("C:/Users/NayLA/java_workspace/UniversitySouvenirStore/images/NUS_ISS.png");
 	    //bgimage = Toolkit.getDefaultToolkit().getImage("./../../../../images/universitysouvenirstoreicon.png");
-	    mt.addImage(bgimage, 0);
+	    
+	    mt.addImage(bgimage, 0);	    
+	    mt.addImage(logoimage, 1);
+	    
 	    try {
 	      mt.waitForAll();
 	    } catch (InterruptedException e) {
@@ -275,6 +297,10 @@ class ContentPanel extends JPanel {
 	    super.paintComponent(g);
 	    int imwidth = bgimage.getWidth(null);
 	    int imheight = bgimage.getHeight(null);
-	    g.drawImage(bgimage, 1, 1, null);
+	    	    
+	    g.drawImage(logoimage, 10, 1, null);
+	    g.drawImage(bgimage, 15, 110, null);
+	    
+	    
 	  }
 	}

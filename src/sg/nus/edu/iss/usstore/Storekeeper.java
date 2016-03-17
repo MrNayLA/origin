@@ -1,3 +1,15 @@
+/**
+ * File name : Storekeeper.java
+ * 
+ * Description : Implementation of Storekeeper class
+ *               which inherits from Customer class.
+ * 
+ * @author : NayLA 
+ * 
+ * Date :10/03/2016
+ * 
+ */
+
 package sg.nus.edu.iss.usstore;
 
 import java.io.BufferedReader;

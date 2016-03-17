@@ -1,3 +1,14 @@
+/**
+ * File name : UnauthorizedLoginAlert.java
+ * 
+ * Description : JFrame GUI class for displaying alert message if login fails.
+ * 
+ * @author : NayLA 
+ * 
+ * Date :09/03/2016
+ * 
+ */
+
 package sg.nus.edu.iss.usstore;
 
 import java.awt.EventQueue;
