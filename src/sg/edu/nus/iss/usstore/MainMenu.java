@@ -76,7 +76,7 @@ public class MainMenu extends JFrame {
 		
 		JLabel lblRegistration = new JLabel("  Member registration");
 		lblRegistration.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblRegistration.setForeground(Color.CYAN);
+		lblRegistration.setForeground(new Color(0, 0, 139));
 		lblRegistration.setBounds(265, 11, 156, 23);
 		contentPane.add(lblRegistration);
 		

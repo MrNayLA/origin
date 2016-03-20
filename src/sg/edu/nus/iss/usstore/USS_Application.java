@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +39,12 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+
+import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 
 public class USS_Application extends JFrame {
@@ -45,22 +52,17 @@ public class USS_Application extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldUserName;
 	private JPasswordField passwordField;
-	
-	//private static int state;
-	//public static enum ApplicationState{LoginStateStart,LoginStateAuthorized,LoginStateDisposed};
-	///*static*/ ApplicationState LoginWindowState;
 		
 	MainMenu frameMainMenu = new MainMenu();/* Used later (composition)*/
 	Storekeeper currentstorekeeper = new Storekeeper();/* Used for checking storekeeper info. (composition)*/
+	
+	 File dir = new File("./data");/* Instantiation of directory object*/
+	 File file = new File(dir ,"Storekeepers.dat");/* Instantiation of file object*/
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-		//LoginWindowState = ApplicationState.LoginStateStart;
-		//LoginWindowState = ApplicationState.LoginStateAuthorized;		
-		//USS_Application frameLogin = new USS_Application();
 			
 		EventQueue.invokeLater(new Runnable() {
 				
@@ -69,7 +71,7 @@ public class USS_Application extends JFrame {
 							
 					USS_Application frameLogin = new USS_Application();
 					frameLogin.setTitle("Univeristy Souvenir Store");
-					frameLogin.setVisible(true);
+					frameLogin.setVisible(true);									
 																					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -85,7 +87,9 @@ public class USS_Application extends JFrame {
 	public USS_Application() {
 		
 		setResizable(false);			
-		LoginScreen();					
+			
+		LoginScreen();		
+			
 	}
 	
 	public static void MainMenuScreen(){	
@@ -118,21 +122,44 @@ public class USS_Application extends JFrame {
 		contentPanel.setBackground(new Color(244, 164, 96));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		//Calendar rightNow = Calendar.getInstance();		
+		Date now = new Date();
 				
+		JButton btnSystemAdmin = new JButton("System Administration");
+		btnSystemAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					SystemAdmin frame = new SystemAdmin();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		menuBar.add(btnSystemAdmin);
+		
+		JLabel lblCalender = new JLabel();
+		menuBar.add(lblCalender);
+		lblCalender.setText(now.toString());		
 		
 		textFieldUserName = new JTextField();
-		textFieldUserName.setBounds(83, 208, 179, 23);
+		textFieldUserName.setBounds(83, 208, 173, 23);
 		contentPanel.add(textFieldUserName);
 		textFieldUserName.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(83, 254, 179, 23);
+		passwordField.setBounds(83, 254, 173, 23);
 		contentPanel.add(passwordField);
 		
 		JButton btnOK = new JButton("OK");
 				
 		
-		btnOK.setBounds(124, 288, 89, 23);
+		btnOK.setBounds(124, 298, 89, 23);
 		contentPanel.add(btnOK);
 		
 		JLabel lblUserName = new JLabel("User name");
@@ -150,7 +177,7 @@ public class USS_Application extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 120, 340, 360);
+		setBounds(100, 120, 340, 400);
 		//contentPane = new JPanel();
 		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(contentPane);
@@ -166,10 +193,11 @@ public class USS_Application extends JFrame {
 				if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 					
 					String textUserName = textFieldUserName.getText();/* Get input from textField.*/
-					String textPassword = String.valueOf(passwordField.getPassword());/* Get input from passwordField.*/					
+					String textPassword = String.valueOf(passwordField.getPassword());/* Get input from passwordField.*/	
+										
 					
 					try{
-						
+											
 						if(currentstorekeeper.checkUserInfo(textUserName,textPassword))
 						{				
 							/* Open Dialog Box if Username and Password is correct.*/							
@@ -177,7 +205,7 @@ public class USS_Application extends JFrame {
 								//MainMenu frameHome = new MainMenu();
 								frameMainMenu.setTitle("MainMenu Screen : " + "Logged in as "+ textUserName);
 								frameMainMenu.setVisible(true);
-								
+															
 								dispose();/* Destroy current frame where the button exits.*/
 								
 							} catch (Exception homee) {
@@ -187,7 +215,7 @@ public class USS_Application extends JFrame {
 						}
 						else{
 							
-							System.out.println("Wrong user!");
+							//System.out.println("Wrong user!");
 							try {
 								UnauthorizedLoginAlert frameAlert = new UnauthorizedLoginAlert();
 								frameAlert.setTitle("Login check");
@@ -255,19 +283,6 @@ public class USS_Application extends JFrame {
 		});
 		
 	}
-	
-	/* Inner class */
-	//class MyKeyListener extends KeyAdapter {		
-	//	  public void keyPressed(KeyEvent evt) {
-	//	    /*if (evt.getKeyChar() == 'a') {
-	//	      System.out.println("Check for key characters: " + evt.getKeyChar());
-	//	    }*/
-	//	    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-	//	      //System.out.println("Check for key codes: " + evt.getKeyCode());/* For debugging */
-	//	    }
-	//	  }
-	//}
-		
 }
 
 /* Outer class */

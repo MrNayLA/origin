@@ -11,7 +11,7 @@
  * 
  */
 
-package sg.edu.nus.iss.usstore;
+package sg.edu.nus.iss.ussstore;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -54,6 +54,10 @@ public class Storekeeper extends Customer{
 	public String getName(){
 		
 		return this.name;
+	}
+	public String getPassword(){
+		
+		return this.password;
 	}
 	
 	public Boolean updateStoreKeeperInfo(){
@@ -112,7 +116,7 @@ public class Storekeeper extends Customer{
 	    	  
 	      } finally { 
 	    	  
-		    /* Do nothing for now. */
+	    	  /* Do nothing for now. */	    	  		    
 	      } 
 		
 	}
@@ -161,7 +165,7 @@ public class Storekeeper extends Customer{
 		    while((line = br.readLine()) != null) {
 	  	    	  
 		    	  list.add(line);/* Add the line (which was read) into the list.*/	              	    
-		      }
+		    }
 		      
 		    br.close();
 		      
@@ -182,22 +186,17 @@ public class Storekeeper extends Customer{
 			
 		try {
 			
-	      //BufferedReader in = new BufferedReader(new FileReader("C:/Users/NayLA/java_workspace/MyUniversitySouvenirStore/data/Storekeepers.dat"));
 	      BufferedReader in = new BufferedReader(new FileReader("./data/Storekeepers.dat"));	
 	      
-	      /***********************************************/
 	      while((line = in.readLine()) != null) {
 	    	  	    	  
 	    	  list.add(line);/* Add the line (which was read) into the list.*/	              	    
 	      }
 	      
-	      //System.out.println (list);/* For debugging */     
-	      /***********************************************/      
 	      in.close();
 	        
 	    } catch (IOException e) {
 	    	
-	        //System.out.println("File Read Error");
 	        e.printStackTrace();
 	    }
 		
@@ -210,17 +209,13 @@ public class Storekeeper extends Customer{
 		
 		ArrayList<String> listRead = readStorekeepersFile();
 				
-		//list.size();
-	    //list.contains(userInfo);
 		/* Check whether userInfo is in the list. */
 		if(listRead.contains(userInfo))
 		{
-			//System.out.println("Correct user!");/* For debugging */
 			return true;
 		}
 		else{
 						
-			//System.out.println("Wrong user!");/* For debugging */
 			return false;
 		}
 			
